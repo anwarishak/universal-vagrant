@@ -9,6 +9,9 @@ cp /universal-vagrant/configs/apache-security /etc/apache2/conf.d/security
 a2enmod rewrite
 cp /universal-vagrant/configs/apache-sites-default /etc/apache2/sites-available/default
 
+# Create an SSL version as well?
+# Log rotate... do 1 day's worth of log files only
+
 echo "Setting up webroot"
 rm -rf /var/www
 mkdir /var/www
