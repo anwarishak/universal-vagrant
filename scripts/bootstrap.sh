@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-echo "Doing bootstrap stuff"
-apt-get update
+echo "Updating packages"
+apt-get update -qq

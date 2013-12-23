@@ -11,13 +11,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Networking: port forwarding
   config.vm.network :forwarded_port, guest: 80, host: 8080, auto_correct: true
-  config.vm.network :forwarded_port, guest: 3306, host: 3307, auto_correct: true
+  config.vm.network :forwarded_port, guest: 3306, host: 3306, auto_correct: true
+
+  # Synced folders
+  config.vm.synced_folder "./", "/universal-vagrant"
 
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", "512"]
+    vb.customize ["modifyvm", :id, "--hwvirtex", "off"]
   end
 
-  config.vm.provision :shell, :path => ".environment/scripts/bootstrap.sh"
-  config.vm.provision :shell, :path => ".environment/scripts/apache2.sh"
+  config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
+  config.vm.provision :shell, :path => "scripts/bootstrap.sh"
+  config.vm.provision :shell, :path => "scripts/apache.sh"
 
 end
