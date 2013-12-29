@@ -24,5 +24,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
   config.vm.provision :shell, :path => "scripts/bootstrap.sh"
   config.vm.provision :shell, :path => "scripts/apache.sh"
+  config.vm.provision :shell, :path => "scripts/mysql.sh"
 
 end
