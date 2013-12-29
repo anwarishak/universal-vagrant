@@ -27,4 +27,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, :path => "scripts/mysql.sh"
   config.vm.provision :shell, :path => "scripts/php.sh"
 
+  # Do extra bits of provisioning/configuration, if required
+
+  $script = "
+  echo \"Doing some last minute provisioning\"
+  rm /var/www/default/public_html
+  ln -fs /vagrant/webroot /var/www/default/public_html
+  service apache2 restart
+  "
+
+  #config.vm.provision "shell", inline: $script
+
 end
