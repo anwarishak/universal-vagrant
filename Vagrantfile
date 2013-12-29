@@ -2,6 +2,7 @@
 # vi: set ft=ruby :
 
 VAGRANTFILE_API_VERSION = "2"
+PATH_TO_UNIVERSAL_VAGRANT = "./"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
@@ -14,7 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 3306, host: 3306, auto_correct: true
 
   # Synced folders
-  config.vm.synced_folder "./", "/universal-vagrant"
+  config.vm.synced_folder PATH_TO_UNIVERSAL_VAGRANT, "/universal-vagrant"
 
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", "512"]
@@ -22,10 +23,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-  config.vm.provision :shell, :path => "scripts/bootstrap.sh"
-  config.vm.provision :shell, :path => "scripts/apache.sh"
-  config.vm.provision :shell, :path => "scripts/mysql.sh"
-  config.vm.provision :shell, :path => "scripts/php.sh"
+  config.vm.provision :shell, :path => PATH_TO_UNIVERSAL_VAGRANT + "scripts/bootstrap.sh"
+  config.vm.provision :shell, :path => PATH_TO_UNIVERSAL_VAGRANT + "scripts/apache.sh"
+  config.vm.provision :shell, :path => PATH_TO_UNIVERSAL_VAGRANT + "scripts/mysql.sh"
+  config.vm.provision :shell, :path => PATH_TO_UNIVERSAL_VAGRANT + "scripts/php.sh"
 
   # Do extra bits of provisioning/configuration, if required
 
@@ -36,6 +37,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   service apache2 restart
   "
 
+  # Uncomment the next line to enable the extra bits of provisioning/configuration
   #config.vm.provision "shell", inline: $script
 
 end
