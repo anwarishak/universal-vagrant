@@ -25,5 +25,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, :path => "scripts/bootstrap.sh"
   config.vm.provision :shell, :path => "scripts/apache.sh"
   config.vm.provision :shell, :path => "scripts/mysql.sh"
+  config.vm.provision :shell, :path => "scripts/php.sh"
 
 end
