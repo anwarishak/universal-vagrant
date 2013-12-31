@@ -12,7 +12,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Networking: port forwarding
   config.vm.network :forwarded_port, guest: 80, host: 8080, auto_correct: true
-  config.vm.network :forwarded_port, guest: 3306, host: 3306, auto_correct: true
 
   # Synced folders
   config.vm.synced_folder PATH_TO_UNIVERSAL_VAGRANT, "/universal-vagrant"
