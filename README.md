@@ -15,4 +15,8 @@ Currently, universal-vagrant uses the precise32 box (Ubuntu 12.04 LTS) and sets 
 
 You should end up with a working LAMP box.
 
-Go to localhost:8080 on your browser to test. Add a PHP file with phpinfo() in your webroot to test PHP functionality.
+Notes
+-----
+
+* Go to localhost:8080 on your browser to test. Add a PHP file with phpinfo() in your webroot to test PHP functionality.
+* The provisioner will also attempt to set up any databases for your project. Create database SQL dumps in /.database with the name of the database as the filename. E.g. /.database/my_project.sql. The script will create attempt to create the my_project database and import the SQL file (for the structure and data). You can have more than one SQL file in the directory if you need more than one database set up.
