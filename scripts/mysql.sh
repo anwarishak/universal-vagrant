@@ -11,10 +11,10 @@ cp /universal-vagrant/configs/my.cnf /etc/mysql/my.cnf
 echo "Restarting MySQL"
 service mysql restart
 
-if [ -d /vagrant/.database ]
+if [ -d /vagrant/_database ]
 then
   echo "Setting up project database(s)"
-  sql_files="/vagrant/.database/*.sql" 
+  sql_files="/vagrant/_database/*.sql"
   for file in $sql_files
   do
     if [ -f $file ]
