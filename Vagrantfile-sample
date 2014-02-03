@@ -1,7 +1,21 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+
+# This Vagrantfile is intended to be used with universal-vagrant
+# https://github.com/anwarishak/universal-vagrant/releases
+#
+# This is a sample Vagrantfile. To use it:
+# 1. Make a copy of this file in your web root
+# 2. Rename file to "Vagrantfile"
+# 3. Make any adjustments below (e.g. comment/uncomment provisioners as required, set
+#    permissions of folders, extra manual shell commands when provisioning)
+# 4. Run > vagrant up
+
+
 VAGRANTFILE_API_VERSION = "2"
+
+# Change the path to universal-vagrant, including a trailing slash
 PATH_TO_UNIVERSAL_VAGRANT = "./"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -13,11 +27,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Networking: port forwarding
   config.vm.network :forwarded_port, guest: 80, host: 8080, auto_correct: true
 
-  # Synced folders
+  # Synced folders (also add items here to set folder permissions)
   config.vm.synced_folder PATH_TO_UNIVERSAL_VAGRANT, "/universal-vagrant"
+  #config.vm.synced_folder "./some-cache", "/vagrant/some-cache", :mount_options => ["dmode=777","fmode=666"]
+  #config.vm.synced_folder "./cms-assets", "/vagrant/cms-assets", :mount_options => ["dmode=777","fmode=666"]
 
   config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "512"]
+    vb.customize ["modifyvm", :id, "--memory", "256"]
     vb.customize ["modifyvm", :id, "--hwvirtex", "off"]
   end
 
