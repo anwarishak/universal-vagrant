@@ -1,17 +1,16 @@
 universal-vagrant
 =================
 
-Vagrant provisioning scripts to set up development environments.
+universal-vagrant makes it easy to get going with Vagrant.
 
-You will need Vagrant and VirtualBox up and running first.
+You will need the latest versions of Vagrant and VirtualBox up and running first.
 
-Currently, universal-vagrant uses the precise32 box (Ubuntu 12.04 LTS) and sets up Apache 2, MySQL and PHP5. But this project can be extended to use any box and provision any software/platform you want in the box.
+universal-vagrant uses the precise32 box (Ubuntu 12.04 LTS) and sets up Apache 2, MySQL and PHP5. But this project can be extended to use any box and provision any software/platform as required.
 
-1. Clone project outside of your webroot; e.g. into "/var/www/universal-vagrant" or "C:/development/universal-vagrant"
-2. Run "vagrant init" from within your webroot; e.g. inside "var/www/myproject.com" or "C:/development/myproject.com"
-3. Copy /uiversal-vagrant/Vagrantfile to /myproject.com/Vagrantfile (replace the file created by Vagrant init)
-4. Amend value of /myproject.com/Vagrantfile > PATH\_TO\_UNIVERSAL_VAGRANT to suit your system; e.g. "/var/www/universal-vagrant/" (Remember to add a trailing slash)
-5. Run "vagrant up"
+1. Download the latest release of universal-vagrant into a folder outside of your web root. E.g. into "/var/www/universal-vagrant" or "C:/development/universal-vagrant".
+2. Copy "Vagrantfile-sample" into your web root and rename it to "Vagrantfile".
+3. Open the Vagrantfile in your web root in a text editor and change some details (instructions of what to change are commented in the file). E.g. path to universal-vagrant, any folder permission changes required.
+4. Run "vagrant up".
 
 You should end up with a working LAMP box.
 
