@@ -34,7 +34,7 @@ This runs the Vagrant provisioner, and will take a few minutes, depending on the
 
 You should then end up with a working LAMP envionrment.
 
-Go to http://localhost:8080 on your web broser to access your project via the web server.
+Go to [http://localhost:8080](http://localhost:8080) on your web browser to access your project via the web server.
 
 Done!
 
