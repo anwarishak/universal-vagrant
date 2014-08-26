@@ -5,35 +5,31 @@
 # This Vagrantfile is intended to be used with universal-vagrant
 # https://github.com/anwarishak/universal-vagrant/releases
 #
-# This is a sample Vagrantfile. To use it:
-# 1. Make a copy of this file in your web root
-# 2. Rename file to "Vagrantfile"
-# 3. Make any adjustments below (e.g. comment/uncomment provisioners as required, set
-#    permissions of folders, extra manual shell commands when provisioning)
-# 4. Run > vagrant up
+# Copy this file into your project root, modify the parameters below as indicated in the comments
+# and run > vagrant up. The provisioning scripts may take several minutes to complete, depending
+# on the speed of your computer.
 
 
 VAGRANTFILE_API_VERSION = "2"
 
-# Change the path to universal-vagrant, including a trailing slash
-PATH_TO_UNIVERSAL_VAGRANT = "./"
+# [CHECK THIS!] Path to universal-vagrant relative to project root, including a trailing slash.
+PATH_TO_UNIVERSAL_VAGRANT = "../universal-vagrant/"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  # Basic box
   config.vm.box = "precise32"
   config.vm.box_url = "http://files.vagrantup.com/precise32.box"
-
-  # Networking: port forwarding
   config.vm.network :forwarded_port, guest: 80, host: 8080, auto_correct: true
-
-  # Synced folders (also add items here to set folder permissions)
   config.vm.synced_folder PATH_TO_UNIVERSAL_VAGRANT, "/universal-vagrant"
+
+  # [CHECK THIS!] Uncomment and modify the following lines if you want to map certain folders
+  # within the Vagrant box to a folder within your project. Your project root is seen as
+  # /vagrant from within the Vagrant box. You can also set the folder permissions.
   #config.vm.synced_folder "./some-cache", "/vagrant/some-cache", :mount_options => ["dmode=777","fmode=666"]
   #config.vm.synced_folder "./cms-assets", "/vagrant/cms-assets", :mount_options => ["dmode=777","fmode=666"]
 
   config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "256"]
+    vb.customize ["modifyvm", :id, "--memory", "512"]
     vb.customize ["modifyvm", :id, "--hwvirtex", "off"]
   end
 
@@ -43,7 +39,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, :path => PATH_TO_UNIVERSAL_VAGRANT + "scripts/mysql.sh"
   config.vm.provision :shell, :path => PATH_TO_UNIVERSAL_VAGRANT + "scripts/php.sh"
 
-  # Do extra bits of provisioning/configuration, if required
+  # [CHECK THIS!] You can add extra provisioning shell commands here. E.g. to set a particular
+  # folder as the webroot, or install a particular PHP extension.
 
   $script = "
   echo \"Doing some last minute provisioning\"
@@ -52,7 +49,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   service apache2 restart
   "
 
-  # Uncomment the next line to enable the extra bits of provisioning/configuration
+  # [CHECK THIS!] Uncomment the next line to enable the extra bits of provisioning/configuration
+  # above.
   #config.vm.provision "shell", inline: $script
 
 end
