@@ -1,4 +1,4 @@
 #!/bin/bash
 
-echo "Updating packages"
+echo ">>>>> Updating packages"
 apt-get update -qq
