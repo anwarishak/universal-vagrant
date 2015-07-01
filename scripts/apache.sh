@@ -3,7 +3,7 @@
 echo ">>>>>> Installing Apache 2"
 apt-get install -y -qq apache2
 
-echo "Configuring Apache"
+echo ">>>>>> Configuring Apache"
 cp /universal-vagrant/configs/apache2.conf /etc/apache2/apache2.conf
 cp /universal-vagrant/configs/apache-security /etc/apache2/conf.d/security
 cp /universal-vagrant/configs/dir.conf /etc/apache2/mods-available/dir.conf
