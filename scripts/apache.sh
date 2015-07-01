@@ -4,11 +4,12 @@ echo ">>>>>> Installing Apache 2"
 apt-get install -y -qq apache2
 
 echo ">>>>>> Configuring Apache"
-cp /universal-vagrant/configs/apache2.conf /etc/apache2/apache2.conf
-cp /universal-vagrant/configs/apache-security /etc/apache2/conf.d/security
-cp /universal-vagrant/configs/dir.conf /etc/apache2/mods-available/dir.conf
+cp /universal-vagrant/configs/apache-security.conf /etc/apache2/conf-available/security.conf
+cp /universal-vagrant/configs/apache-dir.conf /etc/apache2/mods-available/dir.conf
 a2enmod rewrite
 cp /universal-vagrant/configs/apache-sites-default /etc/apache2/sites-available/default
+
+#### PREFORK OR EVENT? MOD_PHP OR FPM?
 
 # Create an SSL version as well?
 
